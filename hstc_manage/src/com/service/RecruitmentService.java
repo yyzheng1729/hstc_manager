@@ -1,0 +1,22 @@
+package com.service;
+
+import java.util.List;
+
+import com.pojo.TRecruitment;
+
+public interface RecruitmentService {
+	/**
+	 * 从数据库获取所有的招聘信息
+	 * @return
+	 */
+	public List<TRecruitment> displayAll();
+	/**
+	 * 增加招聘信息
+	 */
+	public void add(TRecruitment tRecruitment);
+	/**
+	 * 根据id删除对应信息
+	 * @param id
+	 */
+	public void deleteById(String id);
+}

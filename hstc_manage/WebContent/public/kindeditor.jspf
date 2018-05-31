@@ -1,0 +1,6 @@
+<!-- 使用 kindeditor 的副文本编辑的时候，需要引入以下的 css 和 js 文件  -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/kindeditor/themes/default/default.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/lib/kindeditor/plugins/code/prettify.css" />
+<script charset="utf-8" src="${pageContext.request.contextPath}/lib/kindeditor/kindeditor-all.js"></script>
+<script charset="utf-8" src="${pageContext.request.contextPath}/lib/kindeditor/lang/zh-CN.js"></script>
+<script charset="utf-8" src="${pageContext.request.contextPath}/lib/kindeditor/plugins/code/prettify.js"></script>
