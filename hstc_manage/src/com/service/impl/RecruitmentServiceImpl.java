@@ -26,4 +26,12 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 	public void deleteById(String id){
 		tRecruitmentMapper.deleteByPrimaryKey(id);
 	}
+	
+	public TRecruitment queryById(String id){
+		return tRecruitmentMapper.selectByPrimaryKey(id);
+	}
+	
+	public void edit(TRecruitment tRecruitment){
+		tRecruitmentMapper.updateByPrimaryKeySelective(tRecruitment);
+	}
 }

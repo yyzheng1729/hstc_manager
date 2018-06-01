@@ -7,18 +7,12 @@
 <%@include file="../public/head.jspf"%>
 <!-- 引入副文本编辑器相关文件 -->
 <%@include file="../public/kindeditor.jspf"%>
-<title>添加招聘信息</title>
+<title>编辑招聘信息</title>
 </head>
 <body>
-	<nav class="breadcrumb">
-	    <i class="Hui-iconfont">&#xe67f;</i>首页
-	    <span class="c-gray en">&gt;</span>信息管理
-	    <span class="c-gray en">&gt;</span>添加招聘信息
-	    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
-	        <i class="Hui-iconfont">&#xe68f;</i></a>
-	</nav>
 	<article class="page-container">
-	    <form class="form form-horizontal" id="form-admin-add" name="myform" enctype="multipart/form-data" >
+	    <form class="form form-horizontal" id="form-admin-edit" name="myform" >
+	    	<input type="hidden" id="id" name="id">
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
 	                <span class="c-red">*</span>招聘信息标题：</label>
@@ -29,7 +23,7 @@
 	            <label class="form-label col-xs-4 col-sm-2">
 	                <span class="c-red">*</span>作者：</label>
 	            <div class="formControls col-xs-8 col-sm-8">
-	                <input type="text" class="input-text" autocomplete="off" id="author" name="author" value="小程序工作人员"></div>
+	                <input type="text" class="input-text" autocomplete="off" id="author" name="author" ></div>
 	        </div>
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
@@ -51,16 +45,19 @@
 	                </span>
 	            </div>
 	        </div>
+	        <input type="hidden" id="imgUrl" name="imgUrl">
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
 	                <span class="c-red">*</span>缩略图：</label>
 	            <div class="formControls col-xs-8 col-sm-8" style="width:185px;">
-	                <input type="file" id="litimg" name="file" autocomplete="off" class="input-text" multiple style="border:none;"></div>
+	            	<!-- <image src="https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/test/1.jpg" style="width:300prx;height:200px;"></image> -->
+	            	<image id="img" style="width:300prx;height:200px;"></image>
+	            </div>
 	        </div>
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">招聘信息详情：</label>
 	            <div class="formControls col-xs-8 col-sm-8">
-	                <textarea name="details" class="textarea" style="height:500px;width:100%;"></textarea>
+	                <textarea name="details" id="details" class="textarea" style="height:300px;width:100%;"></textarea>
 				</div>
 	        </div>
 	        <div class="row cl">
@@ -82,8 +79,38 @@
 	<!--与本页面动态处理有关的 js 操作-->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/add.js"></script> 
 	<script>
-		//获取学院分类信息，并且动态生成 option 选项
 		$(function(){
+			/*获取  edit.jsp?id=111 的参数 id 的值*/
+			var id = ${param.id};
+			$.ajax({
+				type:"POST",
+				url:"/hstc_manage/queryById",
+				data:{
+					id:id
+				},
+				success:function(data){
+					console.log(data);
+					$("#id").val(data.tRecruitment.id);//隐藏输入框，存放当前招聘信息 id
+					$("#title").val(data.tRecruitment.title);
+					$("#author").val(data.tRecruitment.author);
+					$("#details").val(data.tRecruitment.details);
+					$("#imgUrl").val(data.tRecruitment.litimg);//隐藏输入框，存放当前招聘信息的缩略图路径
+					$("#img").attr("src","https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/"+data.tRecruitment.litimg);
+					$("#type option[value='"+data.tRecruitment.type+"']").attr("selected","selected");
+					isCollege(data.collegeName);
+				},
+				error:function(){
+					layer.msg('获取当前的招聘信息详情失败!', {
+		                icon: 1,
+		                time: 1000
+		            });
+				}
+			});
+		});
+		
+		//获取学院分类信息，并且动态生成 option 选项
+		//通过传过来的 collegeName 判断当前的招聘信息是属于哪个学院分类，并选中
+		function isCollege(collegeName){
 			$.ajax({
 				type:"POST",
 				url:"/hstc_manage/college",
@@ -91,7 +118,11 @@
 				success:function(data){
 					$("#college option").remove();
 					for( i in data ){
-						$("#college").append("<option value='"+data[i].collegeId+"'>"+data[i].collegeName+"</option>");
+						if(data[i].collegeName == collegeName){
+							$("#college").append("<option value='"+data[i].collegeId+"' selected='selected'>"+data[i].collegeName+"</option>");
+						}else{
+							$("#college").append("<option value='"+data[i].collegeId+"'>"+data[i].collegeName+"</option>");
+						}
 					}
 				},
 				error:function(){
@@ -101,6 +132,32 @@
 		            });
 				}
 			});
+		};
+		
+		$("#form-admin-edit").validate({
+		    onkeyup: false,
+		    focusCleanup: true,
+		    success: "valid",
+		    submitHandler: function(form) {
+		        $(form).ajaxSubmit({
+		            type: 'post',
+		            url: "/hstc_manage/edit",
+		            success: function(data) {
+		            	if(data == "true"){
+		            		layer.msg('修改成功!', {
+			                    icon: 1,
+			                    time: 3000
+			                });
+		            	}
+		            },
+		            error: function(XmlHttpRequest, textStatus, errorThrown) {
+		                layer.msg('修改招聘信息error!', {
+		                    icon: 1,
+		                    time: 1000
+		                });
+		            }
+		        });
+		    }
 		});
 	</script>
 </body>

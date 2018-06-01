@@ -1,13 +1,4 @@
-/*
- *  默认排序
- *  
- *  ajax 动态加载数据
- *  
- *  新闻的编辑
- *  
- *  新闻的删除
- */
-
+//dataTable 的相关配置信息
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
 	"bStateSave": true,//状态保存
@@ -19,3 +10,4 @@ $('.table-sort').dataTable({
 	  {"orderable":false,"aTargets":[0,1,2,3,4,5,6,7,8,9]}// 不参与排序的列
 	]
 });
+

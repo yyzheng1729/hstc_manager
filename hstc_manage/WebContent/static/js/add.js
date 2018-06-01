@@ -43,31 +43,4 @@ $(function(){
 	        });
 	    }
 	});
-	
-	function insertNews(){
-		$.ajax({
-			type:"POST",
-			url:"/hstc_manage/insertNews",
-			dataType:"json",
-			success:function(data){
-				if(data == "true"){
-					layer.msg('添加成功!', {
-	                    icon: 1,
-	                    time: 1000
-	                });
-	                /* 添加成功后实现页面的刷新 */
-	                /* 成功后重置表单 */
-//	                $(form).resetForm();
-            	}
-			},
-			error: function(XmlHttpRequest, textStatus, errorThrown) {
-                layer.msg('添加新闻信息error!', {
-                    icon: 1,
-                    time: 1000
-                });
-            }
-		})
-		
-	}
-	
 })

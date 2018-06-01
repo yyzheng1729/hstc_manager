@@ -17,5 +17,9 @@ public class CollegeServiceImpl implements CollegeService {
 	public List<TCollege> college(){
 		return tCollegeMapper.selectByExample(null);
 	}
+	
+	public TCollege collegeName(String collegeId){
+		return tCollegeMapper.selectByPrimaryKey(collegeId);
+	}
 
 }

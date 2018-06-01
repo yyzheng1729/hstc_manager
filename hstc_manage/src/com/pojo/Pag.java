@@ -6,6 +6,7 @@ public class Pag {
 	private int totalPage;
 	private long totalData;
 	private List<TRecruitment> tRecruitment;
+
 	public int getTotalPage() {
 		return totalPage;
 	}

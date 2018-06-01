@@ -10,5 +10,11 @@ public interface CollegeService {
 	 * @return
 	 */
 	public List<TCollege> college();
+	/**
+	 * 根据id查询对应学院信息
+	 * @param id
+	 * @return
+	 */
+	public TCollege collegeName(String collegeId);
 
 }

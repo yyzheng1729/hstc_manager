@@ -16,6 +16,7 @@ public class TRecruitment {
     private String type;
 
     private String details;
+    
 
     public String getId() {
         return id;

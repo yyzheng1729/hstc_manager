@@ -19,4 +19,16 @@ public interface RecruitmentService {
 	 * @param id
 	 */
 	public void deleteById(String id);
+	/**
+	 * 根据id查询对应信息
+	 * @param id
+	 * @return
+	 */
+	public TRecruitment queryById(String id);
+	/**
+	 * 更新招聘信息
+	 * @param tRecruitment
+	 */
+	public void edit(TRecruitment tRecruitment);
+	
 }

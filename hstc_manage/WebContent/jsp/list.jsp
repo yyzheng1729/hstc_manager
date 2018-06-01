@@ -4,7 +4,7 @@
 <head>
 <!-- 引入头部公共模块 -->
 <%@include file="../public/head.jspf"%>
-<title>新闻列表</title>
+<title>招聘信息列表</title>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -69,6 +69,7 @@
 				},
 				success:function(data){
 					/*totalData 总数据 totalPage 总页数*/
+					/* pagenum == 1 的时候，才需要对分页插件进行初始化 */
 					if( pagenum == 1){
 						paging(data.totalData,data.totalPage,pagenum);
 					}
@@ -99,9 +100,8 @@
 	
 		function displayData(data){
 			var str="";
-			var test = "test";
 			var tbody = window.document.getElementById("tbody");
-			for( i in data ){
+			for( i in data ){	
 				str += '<tr class="text-c">'+
 				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].id+'</td>'+
@@ -113,25 +113,30 @@
 				       '<td>'+data[i].collegeId+'</td>'+
 				       '<td>'+data[i].type+'</td>'+
 				       '<td class="f-14 td-manage">'+
-				       '<a style="text-decoration:none" class="ml-5" onClick="article_edit("资讯编辑","add.jsp","10001")" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'+
+				       '<a style="text-decoration:none" class="ml-5" onClick="edit(\'招聘信息编辑\',\'edit.jsp\','+data[i].id+')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].id+')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+
 				       '</tr>';
 			}
 			tbody.innerHTML = str;
 		}
-		/*新闻-编辑*/
-		function article_edit(title, url, id, w, h) {
-			console.log("======")
+		
+		/*招聘信息-编辑*/
+		function edit(title, url, id, w, h) {
+			var urlwith= url+"?id="+id;
+			console.log(urlwith)
+			layer_show(title,urlwith,w,h);
+			console.log(id);
+			/* 
 		    var index = layer.open({
 		        type: 2,
 		        title: title,
 		        content: url
 		    });
-		    layer.full(index);
+		    layer.full(index); */
 		}
 		
-		/*新闻-删除*/
+		/*招聘信息-删除*/
 		function del(obj,id) {
 		    layer.confirm('确认要删除吗？',
 		    function(index){
