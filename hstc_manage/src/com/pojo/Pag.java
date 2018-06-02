@@ -6,7 +6,14 @@ public class Pag {
 	private int totalPage;
 	private long totalData;
 	private List<TRecruitment> tRecruitment;
+	private List<TCollege> tCollege;
 
+	public List<TCollege> gettCollege() {
+		return tCollege;
+	}
+	public void settCollege(List<TCollege> tCollege) {
+		this.tCollege = tCollege;
+	}
 	public int getTotalPage() {
 		return totalPage;
 	}

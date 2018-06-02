@@ -21,5 +21,18 @@ public class CollegeServiceImpl implements CollegeService {
 	public TCollege collegeName(String collegeId){
 		return tCollegeMapper.selectByPrimaryKey(collegeId);
 	}
+	
+	public void college_add(TCollege tCollege){
+		tCollegeMapper.insert(tCollege);
+	}
+	
+	public void college_delete(String collegeId){
+		tCollegeMapper.deleteByPrimaryKey(collegeId);
+		System.out.println(tCollegeMapper.deleteByPrimaryKey(collegeId)+"=====================");
+	}
+	
+	public void college_edit(TCollege tCollege){
+		tCollegeMapper.updateByPrimaryKeySelective(tCollege);
+	}
 
 }

@@ -34,4 +34,8 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 	public void edit(TRecruitment tRecruitment){
 		tRecruitmentMapper.updateByPrimaryKeySelective(tRecruitment);
 	}
+	
+/*	public List<TRecruitment> test(){
+		return tRecruitmentMapper.query_TR_TC_ResultMap();
+	}*/
 }

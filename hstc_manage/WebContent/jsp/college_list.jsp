@@ -4,13 +4,13 @@
 <head>
 <!-- 引入头部公共模块 -->
 <%@include file="../public/head.jspf"%>
-<title>招聘信息列表</title>
+<title>学院信息列表</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
-	    <span class="c-gray en">&gt;</span>信息管理
-	    <span class="c-gray en">&gt;</span>招聘信息列表
+	    <span class="c-gray en">&gt;</span>学院管理
+	    <span class="c-gray en">&gt;</span>学院信息列表
 	    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
 	        <i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
@@ -19,26 +19,21 @@
 	        <span class="l">
 	            <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 	                <i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
-	            <a class="btn btn-primary radius" data-title="添加新闻" data-href="${pageContext.request.contextPath}/jsp/add.jsp" onclick="Hui_admin_tab(this)" href="javascript:;">
-	                <i class="Hui-iconfont">&#xe600;</i>添加招聘信息</a></span>
+	            <a class="btn btn-primary radius" onclick="college_add('添加学院信息','college_add.jsp','800','500')" href="javascript:;">
+	                <i class="Hui-iconfont">&#xe600;</i>添加学院信息</a></span>
 	    </div>
 	    <div class="mt-20">
 	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 	            <thead>
-	            	<tr>
-						<th scope="col" colspan="10">招聘信息列表</th>
+		            <tr>
+						<th scope="col" colspan="5">学院列表</th>
 					</tr>
 	                <tr class="text-c">
 	                    <th width="25">
 	                        <input type="checkbox" name="" value=""></th>
-	                    <th width="80">招聘信息编号</th>
-	                    <th width="80">招聘信息标题</th>
-	                    <th width="150">招聘信息展示图</th>
-	                    <th width="80">招聘信息详情</th>
-	                    <th width="80">发表时间</th>
-	                    <th width="80">作者</th>
-	                    <th width="80">学院分类</th>
-	                    <th width="80">招聘信息类型</th>
+	                    <th width="80">学院编号</th>
+	                    <th width="80">学院名称</th>
+	                    <th width="150">学院信息展示图</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
 	            <tbody id="tbody"></tbody>
@@ -68,7 +63,7 @@
 		function loading(pagenum){
 			$.ajax({
 				type:"POST",
-				url:"/hstc_manage/displayAll",
+				url:"/hstc_manage/college_display",
 				dataType:"json",
 				data:{
 					pagenum:pagenum
@@ -79,7 +74,8 @@
 					if( pagenum == 1){
 						paging(data.totalData,data.totalPage,pagenum);
 					}
-					displayData(data.tRecruitment);
+					displayData(data.tCollege);
+					console.log(data.tCollege);
 				},
 				error:function(){
 					alert("招聘信息获取失败！");
@@ -110,28 +106,29 @@
 			for( i in data ){	
 				str += '<tr class="text-c">'+
 				       '<td><input type="checkbox" value="" name=""></td>'+
-				       '<td>'+data[i].id+'</td>'+
-				       '<td>'+data[i].title+'</td>'+
-				       '<td>'+'<img width="200" class="picture-thumb" src='+imgPath+data[i].litimg+'>'+'</td>'+
-				       '<td>'+data[i].details+'</td>'+
-				       '<td>'+data[i].publishedTime+'</td>'+
-				       '<td>'+data[i].author+'</td>'+
 				       '<td>'+data[i].collegeId+'</td>'+
-				       '<td>'+data[i].type+'</td>'+
+				       '<td>'+data[i].collegeName+'</td>'+
+				       '<td>'+'<img width="200" class="picture-thumb" src='+imgPath+data[i].collegeImg+'>'+'</td>'+
 				       '<td class="f-14 td-manage">'+
-				       '<a style="text-decoration:none" class="ml-5" onClick="edit(\'招聘信息编辑\',\'edit.jsp\','+data[i].id+')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'+
-				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].id+')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'+
+				       '<a style="text-decoration:none" class="ml-5" onClick="edit(\'招聘信息编辑\',\'college_edit.jsp\','+data[i].collegeId+',800,500)" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'+
+				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].collegeId+')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+
 				       '</tr>';
 			}
 			tbody.innerHTML = str;
 		}
 		
-		/*招聘信息-编辑*/
+		/*学院信息-增加*/
+		function college_add(title,url,w,h){
+			layer_show(title,url,w,h);
+		}
+		
+		/*学院信息-编辑*/
 		function edit(title, url, id, w, h) {
 			var urlwith= url+"?id="+id;
 			console.log(urlwith)
 			layer_show(title,urlwith,w,h);
+			console.log(id);
 			/* 
 		    var index = layer.open({
 		        type: 2,
@@ -141,16 +138,17 @@
 		    layer.full(index); */
 		}
 		
+		
 		/*招聘信息-删除*/
-		function del(obj,id) {
+		function del(obj,collegeId) {
 		    layer.confirm('确认要删除吗？',
 		    function(index){
 		        $.ajax({
 		            type: 'POST',
-		            url: '/hstc_manage/deleteById',
+		            url: '/hstc_manage/college_delete',
 		            dataType: 'json',
 		            data:{
-		            	id:id
+		            	collegeId:collegeId
 		            },
 		            success: function(data) {
 		                $(obj).parents("tr").remove();

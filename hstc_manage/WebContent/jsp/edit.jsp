@@ -77,8 +77,10 @@
 	<%@include file="../public/validation.jspf"%>
 	
 	<!--与本页面动态处理有关的 js 操作-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/add.js"></script> 
 	<script>
+		/*定义图像存储在对应服务器的对象存储空间的路径*/
+		var imgPath = "https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/";
+		
 		$(function(){
 			/*获取  edit.jsp?id=111 的参数 id 的值*/
 			var id = ${param.id};
@@ -95,7 +97,7 @@
 					$("#author").val(data.tRecruitment.author);
 					$("#details").val(data.tRecruitment.details);
 					$("#imgUrl").val(data.tRecruitment.litimg);//隐藏输入框，存放当前招聘信息的缩略图路径
-					$("#img").attr("src","https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/"+data.tRecruitment.litimg);
+					$("#img").attr("src",imgPath+data.tRecruitment.litimg);
 					$("#type option[value='"+data.tRecruitment.type+"']").attr("selected","selected");
 					isCollege(data.collegeName);
 				},

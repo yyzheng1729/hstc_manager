@@ -32,14 +32,13 @@ public class RecruitmentController {
 	CollegeService collegeService;
 	/**
 	 * 获取招聘信息列表（分页）
-	 * @param request
 	 * @param pagenum
 	 * @return
 	 * @throws IOException
 	 */
 	@RequestMapping(value="/displayAll", produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String display(HttpServletRequest request, int pagenum) throws IOException{
+	public String display(int pagenum) throws IOException{
 		PageHelper.startPage(pagenum,5);
 		List<TRecruitment> list = recruitmentService.displayAll();
 
@@ -136,7 +135,7 @@ public class RecruitmentController {
 		return gson.toJson(tRecruitmentCompletion);
 	}
 	
-	@RequestMapping(value="edit")
+	@RequestMapping(value="/edit")
 	@ResponseBody
 	public String edit(HttpServletRequest request) throws IOException {
 		System.out.println("====================");
@@ -165,4 +164,12 @@ public class RecruitmentController {
 		
 		return "true";
 	}
+	
+/*	@RequestMapping(value="/test")
+	@ResponseBody
+	public String test() throws IOException{
+		List<TRecruitment> list = recruitmentService.test();
+		Gson gson = new Gson();
+		return gson.toJson(list);
+	}*/
 }

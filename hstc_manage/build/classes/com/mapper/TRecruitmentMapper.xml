@@ -302,4 +302,43 @@
     where id = #{id,jdbcType=VARCHAR}
   </update>
 
+<!-- <resultMap id="TR_TC_ResultMap" type="com.pojo.TRecruitment" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="litimg" property="litimg" jdbcType="VARCHAR" />
+    <result column="published_time" property="publishedTime" jdbcType="VARCHAR" />
+    <result column="author" property="author" jdbcType="VARCHAR" />
+    <result column="college_id" property="collegeId" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    
+    association ：配置一对一属性
+	property:order里面的User属性名
+	javaType:属性类型
+	<association property="tCollege" javaType="com.pojo.TCollege">
+		id:声明主键，表示user_id是关联查询对象的唯一标识
+		<id column="college_id" property="collegeId" jdbcType="VARCHAR" />
+	    <result column="college_name" property="collegeName" jdbcType="VARCHAR" />
+	    <result column="college_img" property="collegeImg" jdbcType="VARCHAR" />
+	</association>
+</resultMap>
+
+<resultMap id="ResultMapWithBLOBs" type="com.pojo.TRecruitment" extends="BaseResultMap" >
+   <result column="details" property="details" jdbcType="LONGVARCHAR" />
+</resultMap>
+
+一对一关联，查询订单，订单内部包含用户属性
+<select id="query_TR_TC_ResultMap" resultMap="com.pojo.TRecruitment">
+	select
+	t_recruitment.id,
+	t_recruitment.title,
+	t_recruitment.litimg,
+	t_recruitment.published_time,
+	t_recruitment.author,
+	t_recruitment.type,
+	t_college.college_name
+	from t_recruitment,t_college
+	where t_recruitment.college_id = t_college.college_id
+</select> -->
+
+  
 </mapper>

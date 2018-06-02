@@ -85,7 +85,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="welcome.jsp" data-title="收藏列表" href="javascript:void(0)">学院列表</a></li>
+	                        <a data-href="./jsp/college_list.jsp" data-title="收藏列表" href="javascript:void(0)">学院列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>

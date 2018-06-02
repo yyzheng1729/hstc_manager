@@ -4,19 +4,11 @@ $(function(){
 	    radioClass: 'iradio-blue',
 	    increaseArea: '20%'
 	});
-	$("#form-admin-add").validate({
+	$("#form-college-add").validate({
 	    rules: {
-	    	title: {
+	       /* author: {
 	            required: true,
-	            minlength: 4,
-	            maxlength: 20
-	        },
-	        author: {
-	            required: true,
-	        },
-	        litimg: {
-	            required: true,
-	        }
+	        }*/
 	    },
 	    onkeyup: false,
 	    focusCleanup: true,
@@ -24,14 +16,13 @@ $(function(){
 	    submitHandler: function(form) {
 	        $(form).ajaxSubmit({
 	            type: 'post',
-	            url: "/hstc_manage/uploadImage?url=add",
+	            url: "/hstc_manage/uploadImage?url=college_add",
 	            success: function(data) {
 	            	if(data == "true"){
-	            		layer.msg('添加照片信息成功!', {
+	            		layer.msg('添加学院信息成功!', {
 		                    icon: 1,
 		                    time: 3000
 		                });
-	            		
 	            	}
 	            },
 	            error: function(XmlHttpRequest, textStatus, errorThrown) {
