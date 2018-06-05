@@ -9,14 +9,14 @@ public class Pag {
 	private List<TCollege> tCollege;
 	private List<TUser> tUser;
 	private List<TCollect> tCollect;
-	private List<TComment> tCommnet;
+	private List<TComment> tComment;
 	
 	
-	public List<TComment> gettCommnet() {
-		return tCommnet;
+	public List<TComment> gettComment() {
+		return tComment;
 	}
-	public void settCommnet(List<TComment> tCommnet) {
-		this.tCommnet = tCommnet;
+	public void settComment(List<TComment> tComment) {
+		this.tComment = tComment;
 	}
 	public List<TCollect> gettCollect() {
 		return tCollect;

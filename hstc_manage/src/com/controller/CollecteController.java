@@ -26,7 +26,7 @@ public class CollecteController {
 	 * @return
 	 * @throws IOException
 	 */
-	@RequestMapping(value="display_collection",produces="application/json;charset=utf-8")
+	@RequestMapping(value="/display_collection",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String display_collection(int pagenum)throws IOException{
 		PageHelper.startPage(pagenum,5);
@@ -41,8 +41,13 @@ public class CollecteController {
 		Gson gson = new Gson();
 		return gson.toJson(pag);	
 	}
-	
-	@RequestMapping(value="deleteByCollectId")
+	/**
+	 * 根据收藏编号，删除相关的收藏记录
+	 * @param collectId
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/deleteByCollectId")
 	@ResponseBody
 	public String deleteByCollectId(String collectId)throws IOException{
 		collecteService.deleteByCollectId(collectId);

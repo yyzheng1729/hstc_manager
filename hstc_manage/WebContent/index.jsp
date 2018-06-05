@@ -96,7 +96,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="welcome.jsp" data-title="评论列表" href="javascript:;">评论列表</a></li>
+	                        <a data-href="./jsp/comment_list.jsp" data-title="评论列表" href="javascript:;">评论列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>

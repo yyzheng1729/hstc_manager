@@ -10,4 +10,9 @@ public interface CommentService {
 	 * @return
 	 */
 	public List<TComment> display_comment();
+	/**
+	 * 根据评论编号删除评论
+	 * @param commentId
+	 */
+	public void deleteByCommentId(String commentId);
 }

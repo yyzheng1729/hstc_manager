@@ -20,7 +20,13 @@ public class CommentController {
 	@Autowired
 	CommentService commentService;
 	
-	@RequestMapping(value="display_comment",produces="application/json;charset=utf-8")
+	/**
+	 * 查询所有的评论信息（分页）
+	 * @param pagenum
+	 * @return
+	 * @throws IOException
+	 */
+	@RequestMapping(value="/display_comment",produces="application/json;charset=utf-8")
 	@ResponseBody
 	public String display_comment(int pagenum) throws IOException{
 		PageHelper.startPage(pagenum,5);
@@ -32,8 +38,15 @@ public class CommentController {
 		Pag pag = new Pag();
 		pag.setTotalPage(totalPage);
 		pag.setTotalData(totalData);
-		pag.settCommnet(list);
+		pag.settComment(list);
 		Gson gson = new Gson();
 		return gson.toJson(pag);
+	}
+	
+	@RequestMapping(value="/deleteByCommentId")
+	@ResponseBody
+	public String deleteByCommentId(String commentId)throws IOException{
+		commentService.deleteByCommentId(commentId);
+		return "true";
 	}
 }

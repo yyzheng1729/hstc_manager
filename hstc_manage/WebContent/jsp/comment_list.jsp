@@ -4,34 +4,30 @@
 <head>
 <!-- 引入头部公共模块 -->
 <%@include file="../public/head.jspf"%>
-<title>用户列表</title>
-<style>
-	th,td{
-	font-size:18px;
-}
-</style>
+<title>评论列表</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
-	    <span class="c-gray en">&gt;</span>用户管理
-	    <span class="c-gray en">&gt;</span>用户列表
+	    <span class="c-gray en">&gt;</span>评论管理
+	    <span class="c-gray en">&gt;</span>评论列表
 	    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
 	        <i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<div class="page-container">
 	    <div class="mt-5">
-	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive" >
+	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 	            <thead>
 		            <tr>
-						<th scope="col" colspan="5">用户列表</th>
+						<th scope="col" colspan="6">评论列表</th>
 					</tr>
 	                <tr class="text-c">
 	                    <th width="25">
 	                        <input type="checkbox" name="" value=""></th>
-	                    <th width="80">用户编号</th>
-	                    <th width="80">用户微信昵称</th>
-	                    <th width="150">用户微信头像</th>
+	                    <th width="80">评论编号</th>
+	                    <th width="80">招聘信息编号</th>
+	                    <th width="80">用户微信编号</th>
+	                    <th width="80">评论内容</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
 	            <tbody id="tbody"></tbody>
@@ -58,7 +54,7 @@
 		function loading(pagenum){
 			$.ajax({
 				type:"POST",
-				url:"/hstc_manage/display_user",
+				url:"/hstc_manage/display_comment",
 				dataType:"json",
 				data:{
 					pagenum:pagenum
@@ -69,10 +65,10 @@
 					if( pagenum == 1){
 						paging(data.totalData,data.totalPage,pagenum);
 					}
-					displayData(data.tUser);
+					displayData(data.tComment);
 				},
 				error:function(){
-					alert("用户相关信息获取失败！");
+					alert("收藏列表信息获取失败！");
 				}
 			});
 		}
@@ -100,27 +96,28 @@
 			for( i in data ){	
 				str += '<tr class="text-c">'+
 				       '<td><input type="checkbox" value="" name=""></td>'+
+				       '<td>'+data[i].commentId+'</td>'+
+				       '<td>'+data[i].id+'</td>'+
 				       '<td>'+data[i].openid+'</td>'+
-				       '<td>'+data[i].nickname+'</td>'+
-				       '<td>'+'<img width="110" class="picture-thumb" src='+data[i].avatarurl+'>'+'</td>'+
+				       '<td>'+data[i].content+'</td>'+
 				       '<td class="f-14 td-manage">'+
-				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].openid+')" href="javascript:;" title="删除"><i style="font-size:25px" class="Hui-iconfont">&#xe6e2;</i></a>'+
+				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].commentId+')" href="javascript:;" title="删除"><i style="font-size:25px;" class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+
 				       '</tr>';
 			}
 			tbody.innerHTML = str;
 		}
 		
-		/*用户信息-删除*/
-		function del(obj,openid) {
+		/*招聘信息-删除*/
+		function del(obj,commentId) {
 		    layer.confirm('确认要删除吗？',
 		    function(index){
 		        $.ajax({
 		            type: 'POST',
-		            url: '/hstc_manage/deleteByOpenid',
+		            url: '/hstc_manage/deleteByCommentId',
 		            dataType: 'json',
 		            data:{
-		            	openid:openid
+		            	commentId:commentId
 		            },
 		            success: function(data) {
 		                $(obj).parents("tr").remove();
