@@ -10,6 +10,13 @@
 <title>添加招聘信息</title>
 </head>
 <body>
+	<!-- 更新信息时页面加载动画的初始化 -->
+	<div class="sk-three-bounce" id="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+    
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
 	    <span class="c-gray en">&gt;</span>信息管理
@@ -46,8 +53,9 @@
 	            <div class="formControls col-xs-8 col-sm-8">
 	                <span class="select-box" style="width:185px;">
 	                    <select class="select" id="type" name="type" size="1">
+	                    	<option value="普通信息">普通信息</option>
 	                        <option value="首页轮播">首页轮播</option>
-	                        <option value="普通信息">普通信息</option></select>
+	                    </select>
 	                </span>
 	            </div>
 	        </div>
@@ -82,6 +90,9 @@
 	<!--与本页面动态处理有关的 js 操作-->
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/add.js"></script> 
 	<script>
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#sk-three-bounce").hide();
+		
 		//获取学院分类信息，并且动态生成 option 选项
 		$(function(){
 			$.ajax({
@@ -101,6 +112,50 @@
 		            });
 				}
 			});
+		});
+		
+		/*上传数据到数据库*/
+		$("#form-admin-add").validate({
+		    rules: {
+		    	title: {
+		            required: true,
+		            minlength: 4,
+		            maxlength: 20
+		        },
+		        author: {
+		            required: true,
+		        },
+		        litimg: {
+		            required: true,
+		        }
+		    },
+		    onkeyup: false,
+		    focusCleanup: true,
+		    success: "valid",
+		    submitHandler: function(form) {
+		    	$("#sk-three-bounce").show();
+		        $(form).ajaxSubmit({
+		            type: 'post',
+		            url: "/hstc_manage/uploadImage?url=add",
+		            success: function(data) {
+		            	if(data == "true"){
+		            		$("#sk-three-bounce").hide();
+		            		layer.msg('添加招聘信息成功!', {
+			                    icon: 1,
+			                    time: 3000
+			                });
+		            		
+		            	}
+		            },
+		            error: function(XmlHttpRequest, textStatus, errorThrown) {
+		            	$("#sk-three-bounce").hide();
+		                layer.msg('没有选择图片或者上传图片error!', {
+		                    icon: 1,
+		                    time: 1000
+		                });
+		            }
+		        });
+		    }
 		});
 	</script>
 </body>

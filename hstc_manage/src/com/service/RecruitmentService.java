@@ -32,5 +32,4 @@ public interface RecruitmentService {
 	public void edit(TRecruitment tRecruitment);
 	
 	
-	/*public List<TRecruitment> test();*/
 }

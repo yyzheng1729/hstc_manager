@@ -44,10 +44,11 @@ public class DateConvert {
 		
 		String time = convert.toString(new Date());
 		System.out.println(new Date().toString());
-		System.out.println(time);
+		System.out.println(time+"====================");
 		
 		Date date = convert.toDate("2018-03-31 20:44:25");
 		System.out.println(date.toString());
+		
 	}
 
 }

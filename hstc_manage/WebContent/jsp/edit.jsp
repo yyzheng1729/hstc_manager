@@ -10,6 +10,13 @@
 <title>编辑招聘信息</title>
 </head>
 <body>
+	<!-- 更新信息时页面加载动画的初始化 -->
+	<div class="sk-three-bounce" id="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+    
 	<article class="page-container">
 	    <form class="form form-horizontal" id="form-admin-edit" name="myform" >
 	    	<input type="hidden" id="id" name="id">
@@ -80,6 +87,8 @@
 	<script>
 		/*定义图像存储在对应服务器的对象存储空间的路径*/
 		var imgPath = "https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/";
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#sk-three-bounce").hide();
 		
 		$(function(){
 			/*获取  edit.jsp?id=111 的参数 id 的值*/
@@ -141,18 +150,24 @@
 		    focusCleanup: true,
 		    success: "valid",
 		    submitHandler: function(form) {
+		    	$("#sk-three-bounce").show();
 		        $(form).ajaxSubmit({
 		            type: 'post',
 		            url: "/hstc_manage/edit",
 		            success: function(data) {
 		            	if(data == "true"){
+		            		$("#sk-three-bounce").hide();
 		            		layer.msg('修改成功!', {
 			                    icon: 1,
-			                    time: 3000
+			                    time: 1500
+			                },function(){
+			                	window.parent.location.replace("list.jsp");
 			                });
+		            		
 		            	}
 		            },
 		            error: function(XmlHttpRequest, textStatus, errorThrown) {
+		            	$("#sk-three-bounce").hide();
 		                layer.msg('修改招聘信息error!', {
 		                    icon: 1,
 		                    time: 1000

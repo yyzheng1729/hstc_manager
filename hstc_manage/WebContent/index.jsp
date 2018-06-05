@@ -61,7 +61,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="welcome.jsp" data-title="用户列表" href="javascript:;">用户列表</a></li>
+	                        <a data-href="./jsp/user_list.jsp" data-title="用户列表" href="javascript:;">用户列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
@@ -85,7 +85,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="./jsp/college_list.jsp" data-title="收藏列表" href="javascript:void(0)">学院列表</a></li>
+	                        <a data-href="./jsp/college_list.jsp" data-title="学院列表" href="javascript:void(0)">学院列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
@@ -107,7 +107,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="article-add.html" data-title="评论列表" href="javascript:;">收藏列表</a></li>
+	                        <a data-href="./jsp/collect_list.jsp" data-title="收藏列表" href="javascript:;">收藏列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
@@ -118,7 +118,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="article-add.html" data-title="评论列表" href="javascript:;">投诉列表</a></li>
+	                        <a data-href="article-add.html" data-title="投诉列表" href="javascript:;">投诉列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>

@@ -16,12 +16,14 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.google.gson.Gson;
+import com.mapper.TRecruitmentMapper;
 import com.pojo.Pag;
 import com.pojo.TCollege;
 import com.pojo.TRecruitment;
 import com.pojo.TRecruitmentCompletion;
 import com.service.CollegeService;
 import com.service.RecruitmentService;
+import com.utils.DateConvert;
 import com.utils.IDUtils;
 
 @Controller
@@ -30,6 +32,9 @@ public class RecruitmentController {
 	RecruitmentService recruitmentService;
 	@Autowired
 	CollegeService collegeService;
+	
+	@Autowired
+	TRecruitmentMapper test;
 	/**
 	 * 获取招聘信息列表（分页）
 	 * @param pagenum
@@ -85,7 +90,8 @@ public class RecruitmentController {
 		String type = request.getParameter("type");
 		String details = request.getParameter("details");
 		String litimg = (String)session.getAttribute("imgName");
-		String time = new Date().toString();
+		DateConvert convert = new DateConvert();
+		String time = convert.toString(new Date());
 		
 		TRecruitment tRecruitment = new TRecruitment();
 		tRecruitment.setId(id);
@@ -138,19 +144,13 @@ public class RecruitmentController {
 	@RequestMapping(value="/edit")
 	@ResponseBody
 	public String edit(HttpServletRequest request) throws IOException {
-		System.out.println("====================");
+
 		String id = request.getParameter("id");
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
 		String collegeId = request.getParameter("college");
 		String type = request.getParameter("type");
 		String details = request.getParameter("details");
-		System.out.println(id);
-		System.out.println(title);
-		System.out.println(author);
-		System.out.println(collegeId);
-		System.out.println(type);
-		System.out.println(details);
 		
 		TRecruitment tRecruitment = new TRecruitment();
 		tRecruitment.setId(id);
@@ -165,11 +165,11 @@ public class RecruitmentController {
 		return "true";
 	}
 	
-/*	@RequestMapping(value="/test")
+	@RequestMapping(value="/test",produces="application/json;charset=utf-8")
 	@ResponseBody
-	public String test() throws IOException{
-		List<TRecruitment> list = recruitmentService.test();
+	public String test(){
+		List<TRecruitment> list = test.querytTRecruitmentResultMap();
 		Gson gson = new Gson();
 		return gson.toJson(list);
-	}*/
+	}
 }

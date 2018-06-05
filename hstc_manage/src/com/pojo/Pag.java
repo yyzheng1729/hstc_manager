@@ -7,7 +7,29 @@ public class Pag {
 	private long totalData;
 	private List<TRecruitment> tRecruitment;
 	private List<TCollege> tCollege;
-
+	private List<TUser> tUser;
+	private List<TCollect> tCollect;
+	private List<TComment> tCommnet;
+	
+	
+	public List<TComment> gettCommnet() {
+		return tCommnet;
+	}
+	public void settCommnet(List<TComment> tCommnet) {
+		this.tCommnet = tCommnet;
+	}
+	public List<TCollect> gettCollect() {
+		return tCollect;
+	}
+	public void settCollect(List<TCollect> tCollect) {
+		this.tCollect = tCollect;
+	}
+	public List<TUser> gettUser() {
+		return tUser;
+	}
+	public void settUser(List<TUser> tUser) {
+		this.tUser = tUser;
+	}
 	public List<TCollege> gettCollege() {
 		return tCollege;
 	}

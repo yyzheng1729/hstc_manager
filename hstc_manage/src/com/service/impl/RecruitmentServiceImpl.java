@@ -16,7 +16,7 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 	TRecruitmentMapper tRecruitmentMapper;
 	
 	public List<TRecruitment> displayAll(){
-		return tRecruitmentMapper.selectByExampleWithBLOBs(null);
+		return tRecruitmentMapper.querytTRecruitmentResultMap();
 	}
 	
 	public void add(TRecruitment tRecruitment){
@@ -35,7 +35,4 @@ public class RecruitmentServiceImpl implements RecruitmentService {
 		tRecruitmentMapper.updateByPrimaryKeySelective(tRecruitment);
 	}
 	
-/*	public List<TRecruitment> test(){
-		return tRecruitmentMapper.query_TR_TC_ResultMap();
-	}*/
 }

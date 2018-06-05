@@ -17,8 +17,17 @@ public class TRecruitment {
 
     private String details;
     
+    private TCollege tCollege;
+    
+    public TCollege gettCollege() {
+		return tCollege;
+	}
 
-    public String getId() {
+	public void settCollege(TCollege tCollege) {
+		this.tCollege = tCollege;
+	}
+
+	public String getId() {
         return id;
     }
 
