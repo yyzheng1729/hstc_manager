@@ -10,8 +10,15 @@ public class Pag {
 	private List<TUser> tUser;
 	private List<TCollect> tCollect;
 	private List<TComment> tComment;
+	private List<TAdmin> tAdmin;
 	
 	
+	public List<TAdmin> gettAdmin() {
+		return tAdmin;
+	}
+	public void settAdmin(List<TAdmin> tAdmin) {
+		this.tAdmin = tAdmin;
+	}
 	public List<TComment> gettComment() {
 		return tComment;
 	}

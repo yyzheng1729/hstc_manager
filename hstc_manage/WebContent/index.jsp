@@ -50,7 +50,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="welcome.jsp" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+	                        <a data-href="./jsp/admin_list.jsp" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
