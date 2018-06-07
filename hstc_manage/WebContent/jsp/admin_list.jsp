@@ -19,20 +19,22 @@
 	        <span class="l">
 	            <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
 	                <i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
-	            <a class="btn btn-primary radius" onclick="college_add('添加学院信息','college_add.jsp','800','500')" href="javascript:;">
+	            <a class="btn btn-primary radius" onclick="college_add('添加学院信息','admin_add.jsp','800','450')" href="javascript:;">
 	                <i class="Hui-iconfont">&#xe600;</i>添加管理员</a></span>
 	    </div>
 	    <div class="mt-20">
 	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 	            <thead>
 		            <tr>
-						<th scope="col" colspan="5">管理员列表</th>
+						<th scope="col" colspan="6">管理员列表</th>
 					</tr>
 	                <tr class="text-c">
 	                    <th width="25">
 	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">管理员编号</th>
-	                    <th width="80">管理员名称</th>
+	                    <th width="80">管理员姓名</th>
+	                    <th width="80">管理员账号</th>
+	                    <th width="80">管理员身份</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
 	            <tbody id="tbody"></tbody>
@@ -106,6 +108,8 @@
 				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].adminId+'</td>'+
 				       '<td>'+data[i].adminName+'</td>'+
+				       '<td>'+data[i].adminAccount+'</td>'+
+				       '<td>'+data[i].adminIdentity+'</td>'+
 				       '<td class="f-14 td-manage">'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].adminId+')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+
@@ -118,33 +122,17 @@
 		function college_add(title,url,w,h){
 			layer_show(title,url,w,h);
 		}
-		
-		/*学院信息-编辑*/
-		function edit(title, url, id, w, h) {
-			var urlwith= url+"?id="+id;
-			console.log(urlwith)
-			layer_show(title,urlwith,w,h);
-			console.log(id);
-			/* 
-		    var index = layer.open({
-		        type: 2,
-		        title: title,
-		        content: url
-		    });
-		    layer.full(index); */
-		}
-		
-		
+				
 		/*招聘信息-删除*/
-		function del(obj,collegeId) {
+		function del(obj,adminId) {
 		    layer.confirm('确认要删除吗？',
 		    function(index){
 		        $.ajax({
 		            type: 'POST',
-		            url: '/hstc_manage/college_delete',
+		            url: '/hstc_manage/deleteByAdminId',
 		            dataType: 'json',
 		            data:{
-		            	collegeId:collegeId
+		            	adminId:adminId
 		            },
 		            success: function(data) {
 		                $(obj).parents("tr").remove();
@@ -154,7 +142,10 @@
 		                });
 		            },
 		            error: function(data) {
-		                console.log(data.msg);
+		            	layer.msg('删除失败!', {
+		                    icon: 1,
+		                    time: 1000
+		                });
 		            },
 		        });
 		    });

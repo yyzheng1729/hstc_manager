@@ -15,6 +15,4 @@ public class TRecruitmentCompletion {
 	public void setCollegeName(String collegeName) {
 		this.collegeName = collegeName;
 	}
-	
-
 }

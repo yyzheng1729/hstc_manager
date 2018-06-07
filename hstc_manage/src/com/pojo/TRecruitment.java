@@ -15,6 +15,8 @@ public class TRecruitment {
 
     private String type;
 
+    private String complaintCount;
+
     private String details;
     
     private TCollege tCollege;
@@ -27,7 +29,7 @@ public class TRecruitment {
 		this.tCollege = tCollege;
 	}
 
-	public String getId() {
+    public String getId() {
         return id;
     }
 
@@ -81,6 +83,14 @@ public class TRecruitment {
 
     public void setType(String type) {
         this.type = type == null ? null : type.trim();
+    }
+
+    public String getComplaintCount() {
+        return complaintCount;
+    }
+
+    public void setComplaintCount(String complaintCount) {
+        this.complaintCount = complaintCount == null ? null : complaintCount.trim();
     }
 
     public String getDetails() {

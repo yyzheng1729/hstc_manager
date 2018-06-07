@@ -7,35 +7,41 @@
 <%@include file="../public/head.jspf"%>
 <!-- 引入副文本编辑器相关文件 -->
 <%@include file="../public/kindeditor.jspf"%>
-<title>添加学院信息</title>
+<title>添加普通管理员</title>
 </head>
 <body>
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
-	    <span class="c-gray en">&gt;</span>学院管理
-	    <span class="c-gray en">&gt;</span>添加学院信息
+	    <span class="c-gray en">&gt;</span>管理员管理
+	    <span class="c-gray en">&gt;</span>添加普通管理员
 	    <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新">
 	        <i class="Hui-iconfont">&#xe68f;</i></a>
 	</nav>
 	<article class="page-container">
-	    <form class="form form-horizontal" id="form-college-add" name="myform" enctype="multipart/form-data" >
+	    <form class="form form-horizontal" id="form-admin-add" name="myform">
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
-	                <span class="c-red">*</span>学院编号：</label>
+	                <span class="c-red">*</span>管理员姓名：</label>
 	            <div class="formControls col-xs-8 col-sm-8">
-	                <input type="text" class="input-text" autocomplete="off" id="collegeId" name="collegeId"></div>
+	                <input type="text" class="input-text" autocomplete="off" id="adminName" name="adminName" ></div>
 	        </div>
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
-	                <span class="c-red">*</span>学院名称：</label>
+	                <span class="c-red">*</span>管理员账号：</label>
 	            <div class="formControls col-xs-8 col-sm-8">
-	                <input type="text" class="input-text" autocomplete="off" id="collegeName" name="collegeName" ></div>
+	                <input type="text" class="input-text" autocomplete="off" id="adminAccount" name="adminAccount" ></div>
 	        </div>
 	        <div class="row cl">
 	            <label class="form-label col-xs-4 col-sm-2">
-	                <span class="c-red">*</span>缩略图：</label>
-	            <div class="formControls col-xs-8 col-sm-8" style="width:185px;">
-	                <input type="file" id="litimg" name="file" autocomplete="off" class="input-text" multiple style="border:none;"></div>
+	                <span class="c-red">*</span>登录密码：</label>
+	            <div class="formControls col-xs-8 col-sm-8">
+	                <input type="text" class="input-text" autocomplete="off" id="adminPassword" name="adminPassword" ></div>
+	        </div>
+	        <div class="row cl">
+	            <label class="form-label col-xs-4 col-sm-2">
+	                <span class="c-red">*</span>管理员身份：</label>
+	            <div class="formControls col-xs-8 col-sm-8">
+	                <input type="text" class="input-text" autocomplete="off" id="adminIdentity" name="adminIdentity" value="普通管理员" readonly ></div>
 	        </div>
 	        <div class="row cl">
 	            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-2">
@@ -54,12 +60,22 @@
 	<%@include file="../public/validation.jspf"%>
 	
 	<!--与本页面动态处理有关的 js 操作-->
+
 	<script type="text/javascript">
-		$("#form-college-add").validate({
+		$("#form-admin-add").validate({
 		    rules: {
-		       /* author: {
+		    	adminName: {
 		            required: true,
-		        }*/
+		        },
+		        adminAccount: {
+		            required: true,
+		        },
+		        adminPassword: {
+		            required: true,
+		        },
+		        adminIdentity: {
+		            required: true,
+		        }
 		    },
 		    onkeyup: false,
 		    focusCleanup: true,
@@ -67,17 +83,17 @@
 		    submitHandler: function(form) {
 		        $(form).ajaxSubmit({
 		            type: 'post',
-		            url: "/hstc_manage/uploadImage?url=college_add",
+		            url: "/hstc_manage/admin_add",
 		            success: function(data) {
 		            	if(data == "true"){
-		            		layer.msg('添加学院信息成功!', {
+		            		layer.msg('添加普通管理员成功!', {
 			                    icon: 1,
 			                    time: 3000
 			                });
 		            	}
 		            },
 		            error: function(XmlHttpRequest, textStatus, errorThrown) {
-		                layer.msg('没有选择图片或者上传图片error!', {
+		                layer.msg('添加普通管理员失败!', {
 		                    icon: 1,
 		                    time: 1000
 		                });

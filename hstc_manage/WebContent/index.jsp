@@ -51,6 +51,8 @@
 	                <ul>
 	                    <li>
 	                        <a data-href="./jsp/admin_list.jsp" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+	                    <li>
+	                        <a data-href="./jsp/admin_edit_password.jsp" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
@@ -132,7 +134,7 @@
 	        <div class="Hui-tabNav-wp">
 	            <ul id="min_title_list" class="acrossTab cl">
 	                <li class="active">
-	                    <span title="我的桌面" data-href="welcome.jsp">我的桌面</span>
+	                    <span title="我的桌面" data-href="http://www.hstc.edu.cn/">我的桌面</span>
 	                    <em></em>
 	                </li>
 	            </ul>
@@ -147,7 +149,7 @@
 	    <div id="iframe_box" class="Hui-article">
 	        <div class="show_iframe">
 	            <div style="display:none" class="loading"></div>
-	            <iframe scrolling="yes" frameborder="0" src="welcome.jsp"></iframe>
+	            <iframe scrolling="yes" frameborder="0" src="http://www.hstc.edu.cn/"></iframe>
 	        </div>
 	    </div>
 	</section>

@@ -26,7 +26,7 @@
 	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
 	            <thead>
 	            	<tr>
-						<th scope="col" colspan="10">招聘信息列表</th>
+						<th scope="col" colspan="11">招聘信息列表</th>
 					</tr>
 	                <tr class="text-c">
 	                    <th width="25">
@@ -39,6 +39,7 @@
 	                    <th width="80">作者</th>
 	                    <th width="80">学院分类</th>
 	                    <th width="80">招聘信息类型</th>
+	                    <th width="80">被投诉次数</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
 	            <tbody id="tbody"></tbody>
@@ -55,7 +56,6 @@
 	<%@include file="../public/foot.jspf"%>
 	
 	<!--请在下方写此页面业务相关的脚本-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/list.js"></script>
 	
 	<script type="text/javascript">
 		/*定义图像存储在对应服务器的对象存储空间的路径*/
@@ -118,6 +118,7 @@
 				       '<td>'+data[i].author+'</td>'+
 				       '<td>'+data[i].tCollege.collegeName+'</td>'+
 				       '<td>'+data[i].type+'</td>'+
+				       '<td>'+data[i].complaintCount+'</td>'+
 				       '<td class="f-14 td-manage">'+
 				       '<a style="text-decoration:none" class="ml-5" onClick="edit(\'招聘信息编辑\',\'edit.jsp\','+data[i].id+')" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a>'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].id+')" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>'+

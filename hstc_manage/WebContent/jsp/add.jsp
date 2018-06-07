@@ -88,8 +88,8 @@
 	<%@include file="../public/validation.jspf"%>
 	
 	<!--与本页面动态处理有关的 js 操作-->
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/add.js"></script> 
-	<script>
+	<script type="text/javascript" >
+		
 		/* 页面初始化时，默认加载效果隐藏*/
 		$("#sk-three-bounce").hide();
 		

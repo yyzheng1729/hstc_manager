@@ -9,6 +9,7 @@
     <result column="author" property="author" jdbcType="VARCHAR" />
     <result column="college_id" property="collegeId" jdbcType="VARCHAR" />
     <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="complaint_count" property="complaintCount" jdbcType="VARCHAR" />
   </resultMap>
   <resultMap id="ResultMapWithBLOBs" type="com.pojo.TRecruitment" extends="BaseResultMap" >
     <result column="details" property="details" jdbcType="LONGVARCHAR" />
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, title, litimg, published_time, author, college_id, type
+    id, title, litimg, published_time, author, college_id, type, complaint_count
   </sql>
   <sql id="Blob_Column_List" >
     details
@@ -128,10 +129,12 @@
   <insert id="insert" parameterType="com.pojo.TRecruitment" >
     insert into t_recruitment (id, title, litimg, 
       published_time, author, college_id, 
-      type, details)
+      type, complaint_count, details
+      )
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{litimg,jdbcType=VARCHAR}, 
       #{publishedTime,jdbcType=VARCHAR}, #{author,jdbcType=VARCHAR}, #{collegeId,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{details,jdbcType=LONGVARCHAR})
+      #{type,jdbcType=VARCHAR}, #{complaintCount,jdbcType=VARCHAR}, #{details,jdbcType=LONGVARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.pojo.TRecruitment" >
     insert into t_recruitment
@@ -156,6 +159,9 @@
       </if>
       <if test="type != null" >
         type,
+      </if>
+      <if test="complaintCount != null" >
+        complaint_count,
       </if>
       <if test="details != null" >
         details,
@@ -182,6 +188,9 @@
       </if>
       <if test="type != null" >
         #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="complaintCount != null" >
+        #{complaintCount,jdbcType=VARCHAR},
       </if>
       <if test="details != null" >
         #{details,jdbcType=LONGVARCHAR},
@@ -218,6 +227,9 @@
       <if test="record.type != null" >
         type = #{record.type,jdbcType=VARCHAR},
       </if>
+      <if test="record.complaintCount != null" >
+        complaint_count = #{record.complaintCount,jdbcType=VARCHAR},
+      </if>
       <if test="record.details != null" >
         details = #{record.details,jdbcType=LONGVARCHAR},
       </if>
@@ -235,6 +247,7 @@
       author = #{record.author,jdbcType=VARCHAR},
       college_id = #{record.collegeId,jdbcType=VARCHAR},
       type = #{record.type,jdbcType=VARCHAR},
+      complaint_count = #{record.complaintCount,jdbcType=VARCHAR},
       details = #{record.details,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -248,7 +261,8 @@
       published_time = #{record.publishedTime,jdbcType=VARCHAR},
       author = #{record.author,jdbcType=VARCHAR},
       college_id = #{record.collegeId,jdbcType=VARCHAR},
-      type = #{record.type,jdbcType=VARCHAR}
+      type = #{record.type,jdbcType=VARCHAR},
+      complaint_count = #{record.complaintCount,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -274,6 +288,9 @@
       <if test="type != null" >
         type = #{type,jdbcType=VARCHAR},
       </if>
+      <if test="complaintCount != null" >
+        complaint_count = #{complaintCount,jdbcType=VARCHAR},
+      </if>
       <if test="details != null" >
         details = #{details,jdbcType=LONGVARCHAR},
       </if>
@@ -288,6 +305,7 @@
       author = #{author,jdbcType=VARCHAR},
       college_id = #{collegeId,jdbcType=VARCHAR},
       type = #{type,jdbcType=VARCHAR},
+      complaint_count = #{complaintCount,jdbcType=VARCHAR},
       details = #{details,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
@@ -298,10 +316,11 @@
       published_time = #{publishedTime,jdbcType=VARCHAR},
       author = #{author,jdbcType=VARCHAR},
       college_id = #{collegeId,jdbcType=VARCHAR},
-      type = #{type,jdbcType=VARCHAR}
+      type = #{type,jdbcType=VARCHAR},
+      complaint_count = #{complaintCount,jdbcType=VARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  
+
  <resultMap type="com.pojo.TRecruitment" id="tRecruitmentCollegeResultMap">
 	<id property="id" column="id" />
 	<result property="title" column="title" />
@@ -311,6 +330,7 @@
 	<result property="collegeId" column="college_id" />
 	<result property="type" column="type" />
 	<result property="details" column="details" />
+	<result property="complaintCount" column="complaint_count" />
 	
 	<!-- association ：配置一对一属性 -->
 	<!-- property:实体类中里面的 TCollege 属性名 -->
@@ -333,6 +353,7 @@
 	r.author,
 	r.type,
 	r.details,
+	r.complaint_count,
 	c.college_name
 	FROM
 	`t_recruitment` r

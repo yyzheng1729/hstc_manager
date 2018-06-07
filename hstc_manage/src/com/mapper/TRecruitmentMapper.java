@@ -34,6 +34,5 @@ public interface TRecruitmentMapper {
 
     int updateByPrimaryKey(TRecruitment record);
     
-    //------------------------------
     List<TRecruitment> querytTRecruitmentResultMap();
 }

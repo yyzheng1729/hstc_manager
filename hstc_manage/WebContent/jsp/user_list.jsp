@@ -5,11 +5,6 @@
 <!-- 引入头部公共模块 -->
 <%@include file="../public/head.jspf"%>
 <title>用户列表</title>
-<style>
-	th,td{
-	font-size:18px;
-}
-</style>
 </head>
 <body>
 	<nav class="breadcrumb">
@@ -24,7 +19,7 @@
 	        <table class="table table-border table-bordered table-bg table-hover table-sort table-responsive" >
 	            <thead>
 		            <tr>
-						<th scope="col" colspan="5">用户列表</th>
+						<th scope="col" colspan="6">用户列表</th>
 					</tr>
 	                <tr class="text-c">
 	                    <th width="25">
@@ -32,6 +27,7 @@
 	                    <th width="80">用户编号</th>
 	                    <th width="80">用户微信昵称</th>
 	                    <th width="150">用户微信头像</th>
+	                    <th width="80">用户地区</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
 	            <tbody id="tbody"></tbody>
@@ -103,6 +99,7 @@
 				       '<td>'+data[i].openid+'</td>'+
 				       '<td>'+data[i].nickname+'</td>'+
 				       '<td>'+'<img width="110" class="picture-thumb" src='+data[i].avatarurl+'>'+'</td>'+
+				       '<td>'+data[i].province+data[i].city+'</td>'+
 				       '<td class="f-14 td-manage">'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].openid+')" href="javascript:;" title="删除"><i style="font-size:25px" class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+
