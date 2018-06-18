@@ -22,8 +22,6 @@
 						<th scope="col" colspan="6">用户列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">用户编号</th>
 	                    <th width="80">用户微信昵称</th>
 	                    <th width="150">用户微信头像</th>
@@ -95,7 +93,6 @@
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].openid+'</td>'+
 				       '<td>'+data[i].nickname+'</td>'+
 				       '<td>'+'<img width="110" class="picture-thumb" src='+data[i].avatarurl+'>'+'</td>'+

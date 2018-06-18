@@ -8,8 +8,29 @@ public class TComment {
     private String openid;
 
     private String content;
+    
+    private TUser tUser;
+    
+    private TRecruitment tRecruitment;
+    
 
-    public String getCommentId() {
+    public TRecruitment gettRecruitment() {
+		return tRecruitment;
+	}
+
+	public void settRecruitment(TRecruitment tRecruitment) {
+		this.tRecruitment = tRecruitment;
+	}
+
+	public TUser gettUser() {
+		return tUser;
+	}
+
+	public void settUser(TUser tUser) {
+		this.tUser = tUser;
+	}
+
+	public String getCommentId() {
         return commentId;
     }
 

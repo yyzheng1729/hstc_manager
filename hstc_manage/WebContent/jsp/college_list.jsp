@@ -17,8 +17,6 @@
 	<div class="page-container">
 	    <div class="cl pd-5 bg-1 bk-gray mt-20">
 	        <span class="l">
-	            <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
-	                <i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
 	            <a class="btn btn-primary radius" onclick="college_add('添加学院信息','college_add.jsp','800','500')" href="javascript:;">
 	                <i class="Hui-iconfont">&#xe600;</i>添加学院信息</a></span>
 	    </div>
@@ -29,8 +27,6 @@
 						<th scope="col" colspan="5">学院列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">学院编号</th>
 	                    <th width="80">学院名称</th>
 	                    <th width="150">学院信息展示图</th>
@@ -105,7 +101,6 @@
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].collegeId+'</td>'+
 				       '<td>'+data[i].collegeName+'</td>'+
 				       '<td>'+'<img width="200" class="picture-thumb" src='+imgPath+data[i].collegeImg+'>'+'</td>'+

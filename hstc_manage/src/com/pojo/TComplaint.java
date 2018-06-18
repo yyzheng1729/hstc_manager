@@ -6,8 +6,29 @@ public class TComplaint {
     private String id;
 
     private String openid;
+    
+    private TUser tUser;
+    
+    private TRecruitment tRecruitment;
+    
 
-    public String getComplaintId() {
+    public TUser gettUser() {
+		return tUser;
+	}
+
+	public void settUser(TUser tUser) {
+		this.tUser = tUser;
+	}
+
+	public TRecruitment gettRecruitment() {
+		return tRecruitment;
+	}
+
+	public void settRecruitment(TRecruitment tRecruitment) {
+		this.tRecruitment = tRecruitment;
+	}
+
+	public String getComplaintId() {
         return complaintId;
     }
 

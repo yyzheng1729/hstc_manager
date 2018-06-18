@@ -17,8 +17,6 @@
 	<div class="page-container">
 	    <div class="cl pd-5 bg-1 bk-gray mt-20">
 	        <span class="l">
-	            <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
-	                <i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
 	            <a class="btn btn-primary radius" data-title="添加新闻" data-href="${pageContext.request.contextPath}/jsp/add.jsp" onclick="Hui_admin_tab(this)" href="javascript:;">
 	                <i class="Hui-iconfont">&#xe600;</i>添加招聘信息</a></span>
 	    </div>
@@ -29,8 +27,6 @@
 						<th scope="col" colspan="11">招聘信息列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">招聘信息编号</th>
 	                    <th width="80">招聘信息标题</th>
 	                    <th width="150">招聘信息展示图</th>
@@ -108,12 +104,14 @@
 			var str="";
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
+				var details = data[i].details;
+				var details_new = details.substring(0,70)+"...";
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].id+'</td>'+
 				       '<td>'+data[i].title+'</td>'+
 				       '<td>'+'<img width="200" class="picture-thumb" src='+imgPath+data[i].litimg+'>'+'</td>'+
-				       '<td>'+data[i].details+'</td>'+
+				       /* '<td class="td4">'+data[i].details+'</td>'+ */
+				       '<td class="td4">'+details_new+'</td>'+
 				       '<td>'+data[i].publishedTime+'</td>'+
 				       '<td>'+data[i].author+'</td>'+
 				       '<td>'+data[i].tCollege.collegeName+'</td>'+

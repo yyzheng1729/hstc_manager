@@ -15,8 +15,10 @@ public class CollecteServiceImpl implements CollecteService {
 	TCollectMapper tCollectMapper;
 	
 	public List<TCollect> display_collection(){
-		return tCollectMapper.selectByExample(null);
+//		return tCollectMapper.selectByExample(null);
+		return tCollectMapper.TCollectResultMap();
 	}
+	
 	public void deleteByCollectId(String collectId){
 		tCollectMapper.deleteByPrimaryKey(collectId);
 	}

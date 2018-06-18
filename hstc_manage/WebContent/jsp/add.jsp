@@ -10,6 +10,9 @@
 <title>添加招聘信息</title>
 </head>
 <body>
+	<!-- 遮掩层 -->
+	<div class="modal" id="modal"></div>
+	
 	<!-- 更新信息时页面加载动画的初始化 -->
 	<div class="sk-three-bounce" id="sk-three-bounce">
         <div class="sk-child sk-bounce1"></div>
@@ -92,6 +95,8 @@
 		
 		/* 页面初始化时，默认加载效果隐藏*/
 		$("#sk-three-bounce").hide();
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#modal").hide();
 		
 		//获取学院分类信息，并且动态生成 option 选项
 		$(function(){
@@ -133,6 +138,7 @@
 		    focusCleanup: true,
 		    success: "valid",
 		    submitHandler: function(form) {
+		    	$("#modal").show();
 		    	$("#sk-three-bounce").show();
 		        $(form).ajaxSubmit({
 		            type: 'post',
@@ -140,6 +146,7 @@
 		            success: function(data) {
 		            	if(data == "true"){
 		            		$("#sk-three-bounce").hide();
+		            		$("#modal").hide();
 		            		layer.msg('添加招聘信息成功!', {
 			                    icon: 1,
 			                    time: 3000
@@ -149,6 +156,7 @@
 		            },
 		            error: function(XmlHttpRequest, textStatus, errorThrown) {
 		            	$("#sk-three-bounce").hide();
+		            	$("#modal").hide();
 		                layer.msg('没有选择图片或者上传图片error!', {
 		                    icon: 1,
 		                    time: 1000

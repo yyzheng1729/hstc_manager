@@ -1,13 +1,35 @@
 package com.pojo;
 
+import java.util.List;
+
 public class TCollect {
     private String collectId;
 
     private String openid;
 
     private String id;
+    
+    private TRecruitment tRecruitment;
+    
+    private TUser tUser;
 
-    public String getCollectId() {
+    public TRecruitment gettRecruitment() {
+		return tRecruitment;
+	}
+
+	public void settRecruitment(TRecruitment tRecruitment) {
+		this.tRecruitment = tRecruitment;
+	}
+
+	public TUser gettUser() {
+		return tUser;
+	}
+
+	public void settUser(TUser tUser) {
+		this.tUser = tUser;
+	}
+
+	public String getCollectId() {
         return collectId;
     }
 

@@ -10,6 +10,16 @@
 <title>添加普通管理员</title>
 </head>
 <body>
+	<!-- 遮掩层 -->
+	<div class="modal" id="modal"></div>
+
+	<!-- 更新信息时页面加载动画的初始化 -->
+	<div class="sk-three-bounce" id="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+    
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
 	    <span class="c-gray en">&gt;</span>管理员管理
@@ -62,6 +72,12 @@
 	<!--与本页面动态处理有关的 js 操作-->
 
 	<script type="text/javascript">
+	
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#sk-three-bounce").hide();
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#modal").hide();
+		
 		$("#form-admin-add").validate({
 		    rules: {
 		    	adminName: {
@@ -81,18 +97,26 @@
 		    focusCleanup: true,
 		    success: "valid",
 		    submitHandler: function(form) {
+		    	$("#sk-three-bounce").show();
+		    	$("#modal").show();
 		        $(form).ajaxSubmit({
 		            type: 'post',
 		            url: "/hstc_manage/admin_add",
 		            success: function(data) {
 		            	if(data == "true"){
+		            		$("#sk-three-bounce").hide();
+		            		$("#modal").hide();
 		            		layer.msg('添加普通管理员成功!', {
 			                    icon: 1,
-			                    time: 3000
+			                    time: 1500
+			                },function(){
+			                	window.parent.location.replace("admin_list.jsp");
 			                });
 		            	}
 		            },
 		            error: function(XmlHttpRequest, textStatus, errorThrown) {
+		            	$("#sk-three-bounce").hide();
+		            	$("#modal").hide();
 		                layer.msg('添加普通管理员失败!', {
 		                    icon: 1,
 		                    time: 1000

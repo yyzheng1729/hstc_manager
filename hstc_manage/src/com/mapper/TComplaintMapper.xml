@@ -178,4 +178,31 @@
       openid = #{openid,jdbcType=VARCHAR}
     where complaint_id = #{complaintId,jdbcType=VARCHAR}
   </update>
+  
+     <resultMap type="com.pojo.TComplaint" id="TComplaintResultMap1">  
+	    <id property="complaintId" column="complaint_id" />  
+	    <result property="id" column="id" />  
+	    <result property="openid" column="openid" />  
+	     
+	    <association property="tUser" javaType="com.pojo.TUser" >   
+	        <id property="openid" column="openid" />  
+	        <result property="nickname" column="nickName" />    
+	    </association>  
+	    
+	    <association property="tRecruitment" javaType="com.pojo.TRecruitment" >  
+	        <id property="id" column="id" />  
+	        <result property="title" column="title" />   
+	    </association> 
+	</resultMap> 
+	
+	<!-- 一对一关联，查询订单，订单内部包含用户属性   -->
+	<select id="TComplaintResultMap" resultMap="TComplaintResultMap1">  
+	    SELECT  
+	    c.complaint_id,
+	    r.title,
+	    u.nickName
+	    FROM  `t_complaint` c ,`t_user` u, `t_recruitment` r
+	    where c.openid = u.openid and c.id = r.id
+	</select> 
+  
 </mapper>

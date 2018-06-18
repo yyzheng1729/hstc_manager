@@ -8,6 +8,7 @@
 <title>韩师新闻Lite后台管理系统</title>
 </head>
 <body>
+	<input type="hidden" id="identity" value="${adminIdentity }" />
 	<header class="navbar-wrapper">
 	    <div class="navbar navbar-fixed-top">
 	        <div class="container-fluid cl">
@@ -15,9 +16,9 @@
 	            <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 	                <ul class="cl">
 	                    <li>
-	                        <span>超级管理员</span></li>
+	                        <span>${adminIdentity }</span><span style="margin-left:10px;">${adminName }</span></li>
 	                    <li class="button">
-	                        <a href="404.html">退出登录</a></li>
+	                        <a href="exit.jsp" target="_top">退出登录</a></li>
 	                    <li id="Hui-skin" class="dropDown right dropDown_hover">
 	                        <a href="javascript:;" class="dropDown_A" title="换肤">
 	                            <i class="Hui-iconfont" style="font-size:18px">&#xe62a;</i></a>
@@ -50,7 +51,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="./jsp/admin_list.jsp" data-title="管理员列表" href="javascript:void(0)">管理员列表</a></li>
+	                        <a data-href="./jsp/admin_list.jsp" data-title="管理员列表" id="adminList" href="javascript:void(0)">管理员列表</a></li>
 	                    <li>
 	                        <a data-href="./jsp/admin_edit_password.jsp" data-title="修改密码" href="javascript:void(0)">修改密码</a></li>
 	                </ul>
@@ -120,7 +121,7 @@
 	            <dd>
 	                <ul>
 	                    <li>
-	                        <a data-href="article-add.html" data-title="投诉列表" href="javascript:;">投诉列表</a></li>
+	                        <a data-href="./jsp/complaint_list.jsp" data-title="投诉列表" href="javascript:;">投诉列表</a></li>
 	                </ul>
 	            </dd>
 	        </dl>
@@ -158,11 +159,20 @@
 	        <li id="closethis">关闭当前</li>
 	        <li id="closeall">关闭全部</li></ul>
 	</div>
-	
+
 	<!-- 引入底部公共模块 -->
 	<%@include file="./public/foot.jspf"%>
 	
 	<!--请在下方写此页面业务相关的脚本-->
 	<script type="text/javascript" src="lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+	<script type="text/javascript">
+		$("#adminList").hide();
+		var identity = $("#identity").val();
+		console.log(identity)
+		if( identity == "超级管理员" ){
+			$("#adminList").show();
+		}
+	</script>
+	
 </body>
 </html>

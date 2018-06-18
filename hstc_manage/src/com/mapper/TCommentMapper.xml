@@ -231,4 +231,37 @@
       openid = #{openid,jdbcType=VARCHAR}
     where comment_id = #{commentId,jdbcType=VARCHAR}
   </update>
+  
+  
+  
+  
+  
+   <resultMap type="com.pojo.TComment" id="TCommentResultMap1">  
+	    <id property="commentId" column="comment_id" />  
+	    <result property="id" column="id" />  
+	    <result property="openid" column="openid" />  
+	    <result property="content" column="content" />
+	     
+	    <association property="tUser" javaType="com.pojo.TUser" >   
+	        <id property="openid" column="openid" />  
+	        <result property="nickname" column="nickName" />    
+	    </association>  
+	    
+	    <association property="tRecruitment" javaType="com.pojo.TRecruitment" >  
+	        <id property="id" column="id" />  
+	        <result property="title" column="title" />   
+	    </association> 
+	</resultMap> 
+	
+	<!-- 一对一关联，查询订单，订单内部包含用户属性   -->
+	<select id="TCommentResultMap" resultMap="TCommentResultMap1">  
+	    SELECT  
+	    c.comment_id,
+	    c.content,
+	    r.title,
+	    u.nickName
+	    FROM  `t_comment` c ,`t_user` u, `t_recruitment` r
+	    where c.openid = u.openid and c.id = r.id
+	</select> 
+  
 </mapper>

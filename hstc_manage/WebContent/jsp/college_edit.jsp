@@ -10,6 +10,16 @@
 <title>编辑学院信息</title>
 </head>
 <body>
+	<!-- 遮掩层 -->
+	<div class="modal" id="modal"></div>
+	
+	<!-- 更新信息时页面加载动画的初始化 -->
+	<div class="sk-three-bounce" id="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+    </div>
+    
 	<nav class="breadcrumb">
 	    <i class="Hui-iconfont">&#xe67f;</i>首页
 	    <span class="c-gray en">&gt;</span>学院管理
@@ -58,6 +68,11 @@
 		/*定义图像存储在对应服务器的对象存储空间的路径*/
 		var imgPath = "https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/";
 		
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#sk-three-bounce").hide();
+		/* 页面初始化时，默认加载效果隐藏*/
+		$("#modal").hide();
+		
 		$(function(){
 			/*获取  edit.jsp?id=111 的参数 id 的值*/
 			var collegeId = ${param.id};
@@ -68,7 +83,6 @@
 					collegeId:collegeId
 				},
 				success:function(data){
-					console.log(data);
 					$("#collegeId").val(data.collegeId);
 					$("#collegeName").val(data.collegeName);
 					$("#img").attr("src",imgPath+data.collegeImg);
@@ -87,11 +101,15 @@
 		    focusCleanup: true,
 		    success: "valid",
 		    submitHandler: function(form) {
+		    	$("#sk-three-bounce").show();
+		    	$("#modal").show();
 		        $(form).ajaxSubmit({
 		            type: 'post',
 		            url: "/hstc_manage/college_edit",
 		            success: function(data) {
 		            	if(data == "true"){
+		            		$("#sk-three-bounce").hide();
+		            		$("#modal").hide();
 		            		layer.msg('修改成功!', {
 			                    icon: 1,
 			                    time: 3000
@@ -99,6 +117,8 @@
 		            	}
 		            },
 		            error: function(XmlHttpRequest, textStatus, errorThrown) {
+		            	$("#sk-three-bounce").hide();
+		            	$("#modal").hide();
 		                layer.msg('修改招聘信息error!', {
 		                    icon: 1,
 		                    time: 1000

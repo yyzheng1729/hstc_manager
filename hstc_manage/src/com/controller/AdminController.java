@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.pojo.Pag;
 import com.pojo.TAdmin;
 import com.service.AdminService;
 import com.utils.IDUtils;
+import com.utils.MD5;
 
 @Controller
 public class AdminController {
@@ -71,6 +73,8 @@ public class AdminController {
 		String adminName = request.getParameter("adminName");
 		String adminAccount = request.getParameter("adminAccount");
 		String adminPassword = request.getParameter("adminPassword");
+		//MD5加密
+		adminPassword = MD5.encrypt(adminPassword, "zwd");
 		String adminIdentity = request.getParameter("adminIdentity");
 		
 		TAdmin tAdmin = new TAdmin();
@@ -92,13 +96,15 @@ public class AdminController {
 	 */
 	@RequestMapping(value="/admin_edit_password")
 	@ResponseBody
-	public String admin_edit_password(HttpServletRequest request) throws IOException{
+	public String admin_edit_password(HttpServletRequest request,HttpSession session) throws IOException{
 		
-		String adminId = "15283385826";
+		String adminAccount = (String)session.getAttribute("adminAccount");
 		String adminPassword = request.getParameter("adminPassword");
+		//MD5加密
+		adminPassword = MD5.encrypt(adminPassword, "zwd");
 		
 		TAdmin tAdmin = new TAdmin();
-		tAdmin.setAdminId(adminId);
+		tAdmin.setAdminAccount(adminAccount);
 		tAdmin.setAdminPassword(adminPassword);
 		
 		adminService.admin_edit_password(tAdmin);

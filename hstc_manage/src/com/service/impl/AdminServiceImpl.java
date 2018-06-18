@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.mapper.TAdminMapper;
 import com.pojo.TAdmin;
+import com.pojo.TAdminExample;
+import com.pojo.TAdminExample.Criteria;
 import com.service.AdminService;
 
 @Service
@@ -27,6 +29,11 @@ public class AdminServiceImpl implements AdminService{
 	}
 	
 	public void admin_edit_password(TAdmin tAdmin){
-		tAdminMapper.updateByPrimaryKeySelective(tAdmin);
+		TAdminExample example = new TAdminExample();
+		Criteria criteria = example.createCriteria();
+		criteria.andAdminAccountEqualTo(tAdmin.getAdminAccount());
+//		tAdminMapper.updateByExample(tAdmin, example);
+		tAdminMapper.updateByExampleSelective(tAdmin, example);
+//		tAdminMapper.updateByPrimaryKeySelective(tAdmin);
 	}
 }

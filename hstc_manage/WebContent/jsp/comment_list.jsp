@@ -22,11 +22,9 @@
 						<th scope="col" colspan="6">评论列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">评论编号</th>
-	                    <th width="80">招聘信息编号</th>
-	                    <th width="80">用户微信编号</th>
+	                    <th width="80">招聘信息标题</th>
+	                    <th width="80">用户微信昵称</th>
 	                    <th width="80">评论内容</th>
 	                    <th width="80">操作</th></tr>
 	            </thead>
@@ -46,7 +44,7 @@
 	<!--请在下方写此页面业务相关的脚本-->
 	
 	<script type="text/javascript">
-		
+	
 		$(function(){
 			loading(1);
 		});
@@ -95,10 +93,9 @@
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].commentId+'</td>'+
-				       '<td>'+data[i].id+'</td>'+
-				       '<td>'+data[i].openid+'</td>'+
+				       '<td>'+data[i].tRecruitment.title+'</td>'+
+				       '<td>'+data[i].tUser.nickname+'</td>'+
 				       '<td>'+data[i].content+'</td>'+
 				       '<td class="f-14 td-manage">'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].commentId+')" href="javascript:;" title="删除"><i style="font-size:25px;" class="Hui-iconfont">&#xe6e2;</i></a>'+

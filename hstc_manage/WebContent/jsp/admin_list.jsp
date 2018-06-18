@@ -17,8 +17,6 @@
 	<div class="page-container">
 	    <div class="cl pd-5 bg-1 bk-gray mt-20">
 	        <span class="l">
-	            <a href="javascript:;" onclick="datadel()" class="btn btn-danger radius">
-	                <i class="Hui-iconfont">&#xe6e2;</i>批量删除</a>
 	            <a class="btn btn-primary radius" onclick="college_add('添加学院信息','admin_add.jsp','800','450')" href="javascript:;">
 	                <i class="Hui-iconfont">&#xe600;</i>添加管理员</a></span>
 	    </div>
@@ -29,8 +27,6 @@
 						<th scope="col" colspan="6">管理员列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">管理员编号</th>
 	                    <th width="80">管理员姓名</th>
 	                    <th width="80">管理员账号</th>
@@ -105,7 +101,6 @@
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].adminId+'</td>'+
 				       '<td>'+data[i].adminName+'</td>'+
 				       '<td>'+data[i].adminAccount+'</td>'+

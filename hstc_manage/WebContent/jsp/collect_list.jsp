@@ -22,8 +22,6 @@
 						<th scope="col" colspan="5">收藏列表</th>
 					</tr>
 	                <tr class="text-c">
-	                    <th width="25">
-	                        <input type="checkbox" name="" value=""></th>
 	                    <th width="80">收藏编号</th>
 	                    <th width="80">用户微信昵称</th>
 	                    <th width="150">招聘信息标题</th>
@@ -94,10 +92,9 @@
 			var tbody = window.document.getElementById("tbody");
 			for( i in data ){	
 				str += '<tr class="text-c">'+
-				       '<td><input type="checkbox" value="" name=""></td>'+
 				       '<td>'+data[i].collectId+'</td>'+
-				       '<td>'+data[i].openid+'</td>'+
-				       '<td>'+data[i].id+'</td>'+
+				       '<td>'+data[i].tUser.nickname+'</td>'+
+				       '<td>'+data[i].tRecruitment.title+'</td>'+
 				       '<td class="f-14 td-manage">'+
 				       '<a style="text-decoration:none" class="ml-5" onclick="del(this,'+data[i].collectId+')" href="javascript:;" title="删除"><i style="font-size:25px;" class="Hui-iconfont">&#xe6e2;</i></a>'+
 				       '</td>'+

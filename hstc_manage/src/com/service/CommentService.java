@@ -15,4 +15,5 @@ public interface CommentService {
 	 * @param commentId
 	 */
 	public void deleteByCommentId(String commentId);
+	
 }

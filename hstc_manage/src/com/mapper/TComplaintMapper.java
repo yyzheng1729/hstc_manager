@@ -27,4 +27,6 @@ public interface TComplaintMapper {
     int updateByPrimaryKeySelective(TComplaint record);
 
     int updateByPrimaryKey(TComplaint record);
+    
+    List<TComplaint> TComplaintResultMap();
 }

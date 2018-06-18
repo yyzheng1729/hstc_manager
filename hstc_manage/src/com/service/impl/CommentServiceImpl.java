@@ -15,7 +15,7 @@ public class CommentServiceImpl implements CommentService{
 	TCommentMapper tCommentMapper;
 	
 	public List<TComment> display_comment(){
-		return tCommentMapper.selectByExampleWithBLOBs(null);
+		return tCommentMapper.TCommentResultMap();
 	}
 	
 	public void deleteByCommentId(String commentId){

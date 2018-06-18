@@ -11,8 +11,14 @@ public class Pag {
 	private List<TCollect> tCollect;
 	private List<TComment> tComment;
 	private List<TAdmin> tAdmin;
+	private List<TComplaint> tComplaint;
 	
-	
+	public List<TComplaint> gettComplaint() {
+		return tComplaint;
+	}
+	public void settComplaint(List<TComplaint> tComplaint) {
+		this.tComplaint = tComplaint;
+	}
 	public List<TAdmin> gettAdmin() {
 		return tAdmin;
 	}

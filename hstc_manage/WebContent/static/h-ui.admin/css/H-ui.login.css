@@ -38,13 +38,11 @@ body {
 	position: absolute;
 	width: 617px;
 	height: 330px;
-	/* background: white url(../images/admin-loginform-bg.png) no-repeat; */
 	left: 50%;
 	top: 55%;
 	margin-left: -309px;
 	margin-top: -184px;
 	padding-top: 15px;
-	/* background: #eee; */
 	border:3px solid rgb(53,137,191);
 	border-radius:10px;
 }
