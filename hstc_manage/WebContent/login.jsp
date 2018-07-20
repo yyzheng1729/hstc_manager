@@ -59,7 +59,9 @@
                 success:function(data){ 
                     $("#loginAccount").val(data.loginAccount);
                     $("#loginPassword").val(data.loginPassword);
-                    $("#checkOne").attr("checked",true);
+                    if(data.loginAccount != ""){
+                    	$("#checkOne").attr("checked",true);
+                    }
                 },
                 error:function() {
                     alert("cookies 信息获取失败！");

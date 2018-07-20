@@ -55,7 +55,7 @@
 	
 	<script type="text/javascript">
 		/*定义图像存储在对应服务器的对象存储空间的路径*/
-		var imgPath = "https://hstc-image-1256231252.cos.ap-guangzhou.myqcloud.com/";
+		var imgPath = "https://hstc-image-1254334144.cos.ap-guangzhou.myqcloud.com/";
 		
 		$(function(){
 			loading(1);
